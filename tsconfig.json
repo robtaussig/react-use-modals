@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "noEmit": true,
+    "emitDeclarationOnly": true,
     "allowJs": true,
     "esModuleInterop": true,
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
+    "declaration": true,
+    "outDir": "dist",
     "jsx": "preserve",
     "baseUrl": "./src",
     "paths": {

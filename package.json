@@ -1,13 +1,13 @@
 {
-  "name": "react-use-modals",
-  "version": "1.0.0",
+  "name": "use-react-modals",
+  "version": "1.2.0",
   "description": "",
-  "source": "src/index.html",
-  "default": "src/index.ts",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
     "start": "parcel",
-    "build": "parcel build",
+    "build": " rm -rf dist && npx tsc && parcel build",
     "lint": "eslint ./src --ext .ts --ext .tsx",
     "check": "tsc --noEmit",
     "ci": "npm run build && npm run test && np, run lint && npm run check",
