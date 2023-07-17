@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "baseUrl": "./src",
+    "paths": {
+      "~/*": ["./*"]
+    },
+    "types": ["node", "jest"],
+    "typeRoots": ["node_modules/@types", "@types"]
+  },
+  "rootDir": "./src",
+  "incremental": true,
+  "experimentalDecorators": true,
+  "lib": ["dom", "es2015"]
+}

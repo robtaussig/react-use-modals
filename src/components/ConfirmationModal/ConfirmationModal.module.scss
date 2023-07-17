@@ -1,0 +1,19 @@
+.container {
+
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+}
+
+.confirmText {
+
+}
+
+.buttons {
+  display: flex;
+  gap: var(--spacing-s);
+  justify-content: space-between;
+}

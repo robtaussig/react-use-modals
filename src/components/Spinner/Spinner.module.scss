@@ -1,0 +1,10 @@
+.container {
+  animation: spinner .8s ease infinite;
+  svg {
+    background-color: transparent;
+  }
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
