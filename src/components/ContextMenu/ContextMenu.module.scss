@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.showNavItemsButton {
+  width: 2rem;
+  height: 32px;
+  transition: transform 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.showNavItems {
+    transform: rotate(90deg);
+  }
+}
+
+.navItems {
+  width: 200px;
+  position: absolute;
+  border-radius: 4px;
+  padding: 1rem;
+  top: 50%;
+  right: 2rem;
+  animation: fadeIn 0.2s ease;
+  -webkit-animation: fadeIn 0.2s ease;
+  -moz-animation: fadeIn 0.2s ease;
+  -o-animation: fadeIn 0.2s ease;
+  -ms-animation: fadeIn 0.2s ease;
+  z-index: 50;
+
+  &.isNearBottom {
+    transform: translateY(-100%);
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    li {
+      a, button {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+      }
+    }
+  }
+  span {
+    text-align: left;
+  }
+  button {
+    font: inherit;
+    line-height: 1;
+    padding: 0.5rem 0;
+    &:disabled {
+      opacity: 0.3;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

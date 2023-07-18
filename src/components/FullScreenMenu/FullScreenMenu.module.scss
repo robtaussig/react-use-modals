@@ -1,0 +1,20 @@
+.menuTitle {
+
+}
+
+.menu {
+  display: contents;
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 500;
+    padding: 1rem 0;
+    &:not(:last-child) {
+      border-bottom: 1px solid currentColor;
+    }
+    &:disabled {
+      opacity: 0.5;
+    }
+  }
+}
