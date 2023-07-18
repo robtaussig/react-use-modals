@@ -8,3 +8,4 @@ export { MyTextField as TextField, MyTextArea as TextArea } from './components/M
 export { default as SelectField } from './components/MySelectField';
 export { default as Checkbox } from './components/MyCheckbox';
 export { default as RadioGroup } from './components/MyRadioGroup';
+export { default as InputModal } from './components/InputModal';
