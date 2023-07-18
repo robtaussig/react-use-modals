@@ -27,7 +27,7 @@ type ConfirmationModalProps = {
 
 export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   className,
-  inputClassNames,
+  inputClassNames = {},
   confirmText,
   onReject,
   onConfirm,

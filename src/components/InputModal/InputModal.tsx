@@ -34,7 +34,7 @@ export type InputModalProps<T = any> = {
 
 export function InputModal<T>({
   className,
-  inputClassNames,
+  inputClassNames = {},
   header,
   subHeader,
   formItems,
