@@ -1,1 +1,1 @@
-export { default } from './MyTextField';
+export { MyTextField, MyTextArea } from './MyTextField';

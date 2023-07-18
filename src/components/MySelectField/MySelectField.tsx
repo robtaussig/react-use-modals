@@ -25,7 +25,7 @@ export const MySelectField = ({
   const { register } = useFormContext();
   return (
     <label className={classNames(styles.container, className)} htmlFor={name}>
-      {label && <span className={styles.label}>{label}</span>}
+      {label && <span>{label}</span>}
       <select {...register(name)} {...inputProps}>
         {children}
       </select>
@@ -33,4 +33,4 @@ export const MySelectField = ({
   );
 };
 
-export default MySelectField;
+export default React.memo(MySelectField);

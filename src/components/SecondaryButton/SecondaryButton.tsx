@@ -19,7 +19,7 @@ export type SecondaryButtonProps = {
   children?: React.ReactNode;
 } & ButtonProps;
 
-const SecondaryButton = ({
+export const SecondaryButton = ({
   children,
   className,
   loading,
@@ -89,4 +89,4 @@ const SecondaryButton = ({
   );
 };
 
-export default SecondaryButton;
+export default React.memo(SecondaryButton);

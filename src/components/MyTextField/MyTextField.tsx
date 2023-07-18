@@ -8,27 +8,18 @@ export type MyTextFieldProps = {
   label?: string;
   className?: string;
   name: string;
-  lightMode?: boolean;
 } & React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 >;
 
 export const MyTextField = React.forwardRef<HTMLInputElement, MyTextFieldProps>(
-  ({ className, name, label, lightMode, ...inputProps }, forwardedRef) => {
+  ({ className, name, label, ...inputProps }, forwardedRef) => {
     const { register } = useFormContext();
     const { ref, ...registered } = register(name);
     return (
-      <label
-        htmlFor={name}
-        className={classNames(
-          styles.container,
-          { [styles.hasLabel]: Boolean(label) },
-          { [styles.lightMode]: Boolean(lightMode) },
-          className
-        )}
-      >
-        {label && <span className={styles.label}>{label}</span>}
+      <label htmlFor={name} className={classNames(styles.container, className)}>
+        {label && <span>{label}</span>}
         <input
           type={'text'}
           ref={(node) => {
@@ -83,5 +74,3 @@ export const MyTextArea = ({
     </label>
   );
 };
-
-export default MyTextField;

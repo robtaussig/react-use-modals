@@ -1,0 +1,16 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  input, select {
+    font-size: 16px;
+  }
+  
+  .inputRoot {
+    width: 100%;
+  }
+  
+  .submitButton {
+    margin-top: 16px;
+  }
+}
