@@ -45,6 +45,7 @@ export type ModalsProviderProps = {
   classNames?: {
     formContainer?: string;
     modalContainer?: string;
+    button?: string;
     primaryButton?: string;
     secondaryButton?: string;
     text?: string;

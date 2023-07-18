@@ -52,6 +52,7 @@ export type FormProps<T = any> = {
   className?: string;
   inputClassNames?: {
     formContainer?: string;
+    button?: string;
     primaryButton?: string;
     secondaryButton?: string;
     text?: string;
@@ -194,6 +195,7 @@ export function Form<T>({
           <PrimaryButton
             className={classNames(
               styles.submitButton,
+              inputClassNames.button,
               inputClassNames.primaryButton
             )}
             loading={loading}

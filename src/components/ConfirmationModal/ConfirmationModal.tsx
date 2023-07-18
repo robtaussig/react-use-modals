@@ -10,6 +10,7 @@ type ConfirmationModalProps = {
   className?: string;
   inputClassNames?: {
     modalContainer?: string;
+    button?: string;
     primaryButton?: string;
     secondaryButton?: string;
     text?: string;
@@ -55,14 +56,20 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
             <span className={styles.confirmText}>{confirmText}</span>
             <div className={styles.buttons}>
               <SecondaryButton
-                className={inputClassNames.secondaryButton}
+                className={cn(
+                  inputClassNames.button,
+                  inputClassNames.secondaryButton
+                )}
                 onClick={() => close(false)}
                 variant={'ghost'}
               >
                 Cancel
               </SecondaryButton>
               <PrimaryButton
-                className={inputClassNames.primaryButton}
+                className={cn(
+                  inputClassNames.button,
+                  inputClassNames.primaryButton
+                )}
                 onClick={() => close(true)}
               >
                 Confirm

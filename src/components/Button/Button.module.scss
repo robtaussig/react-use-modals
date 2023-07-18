@@ -24,37 +24,36 @@
     opacity: 0.6;
     cursor: default;
   }
-
-  &.solid {
-    background-color: var(--action-color);
-    color: var(--ink-primary);
-    border-color: var(--action-color);
-  }
-
-  &.native {
-    svg {
-      fill: var(--action-color);
-    }
-  }
-
-  &.outlined {
-    background-color: transparent;
-    color: var(--ink-primary);
-    border-color: var(--action-color);
-  }
-  &.ghost {
-    background-color: transparent;
-    color: var(--ink-primary);
-    border-color: transparent;
-
-    &:hover, &:focus, &:active {
-      background-color: var(--action-color);
-      color: var(--ink-primary);
-      border-color: transparent;
-    }
-  }
-
   .centeringSpan {
     flex: 1;
+  }
+}
+
+.solid {
+  background-color: var(--action-color);
+  color: var(--ink-primary);
+  border-color: var(--action-color);
+}
+
+.native {
+  svg {
+    fill: var(--action-color);
+  }
+}
+
+.outlined {
+  background-color: transparent;
+  color: var(--ink-primary);
+  border-color: var(--action-color);
+}
+.ghost {
+  background-color: transparent;
+  color: var(--ink-primary);
+  border-color: transparent;
+
+  &:hover, &:focus, &:active {
+    background-color: var(--action-color);
+    color: var(--ink-primary);
+    border-color: transparent;
   }
 }
