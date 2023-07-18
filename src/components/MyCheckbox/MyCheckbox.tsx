@@ -29,6 +29,7 @@ export const MyCheckbox = React.forwardRef<HTMLInputElement, MyCheckboxProps>(
       >
         <input
           type={'checkbox'}
+          id={name}
           ref={(node) => {
             if (typeof forwardedRef === 'function') {
               forwardedRef(node);

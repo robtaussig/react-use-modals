@@ -26,7 +26,7 @@ export const MySelectField = ({
   return (
     <label className={classNames(styles.container, className)} htmlFor={name}>
       {label && <span>{label}</span>}
-      <select {...register(name)} {...inputProps}>
+      <select id={name} {...register(name)} {...inputProps}>
         {children}
       </select>
     </label>

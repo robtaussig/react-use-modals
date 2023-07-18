@@ -22,6 +22,7 @@ export const MyTextField = React.forwardRef<HTMLInputElement, MyTextFieldProps>(
         {label && <span>{label}</span>}
         <input
           type={'text'}
+          id={name}
           ref={(node) => {
             if (typeof forwardedRef === 'function') {
               forwardedRef(node);
@@ -44,7 +45,6 @@ export type MyTextAreaProps = {
   label?: string;
   className?: string;
   name: string;
-  lightMode?: boolean;
 } & React.DetailedHTMLProps<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
   HTMLTextAreaElement
@@ -54,23 +54,14 @@ export const MyTextArea = ({
   className,
   name,
   label,
-  lightMode,
   ...inputProps
 }: MyTextAreaProps) => {
   const { register } = useFormContext();
   const registered = register(name);
   return (
-    <label
-      htmlFor={name}
-      className={classNames(
-        styles.container,
-        { [styles.hasLabel]: Boolean(label) },
-        { [styles.lightMode]: Boolean(lightMode) },
-        className
-      )}
-    >
+    <label htmlFor={name} className={classNames(styles.container, className)}>
       {label && <span className={styles.label}>{label}</span>}
-      <textarea {...registered} {...inputProps} />
+      <textarea id={name} {...registered} {...inputProps} />
     </label>
   );
 };
