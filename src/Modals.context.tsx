@@ -2,9 +2,16 @@ import React from 'react';
 import { InputModal, InputModalProps } from './components/InputModal';
 import ConfirmationModal from './components/ConfirmationModal';
 
+type ConfirmationOptions = {
+  className?: string;
+};
+
 type Context = {
   getInput: <T>(inputProps: InputProps<T>) => void;
-  confirm: (confirmText: string) => Promise<boolean>;
+  confirm: (
+    confirmText: string,
+    options?: ConfirmationOptions
+  ) => Promise<boolean>;
 };
 
 const DEFAULT_CONTEXT = {
@@ -16,6 +23,7 @@ const ModalsContext = React.createContext<Context>(DEFAULT_CONTEXT);
 
 type InputProps<T = any> = Pick<
   InputModalProps<T>,
+  | 'className'
   | 'header'
   | 'subHeader'
   | 'formItems'
@@ -32,9 +40,16 @@ const DEFAULT_MY_INPUT_MODAL_PROPS: Omit<InputModalProps, 'open' | 'setOpen'> =
     onSubmit: async () => null,
   };
 
-export function ModalsProvider({ children }: { children: React.ReactNode }) {
+export type ModalsProviderProps = {
+  children: React.ReactNode;
+};
+
+export function ModalsProvider({ children }: ModalsProviderProps) {
   const [myInputModal, setInputModal] = React.useState<InputProps>();
-  const [showConfirm, setShowConfirm] = React.useState<string>();
+  const [showConfirm, setShowConfirm] = React.useState<{
+    text: string;
+    options?: ConfirmationOptions;
+  }>();
   const confirmPromiseRef = React.useRef<
     ((value: boolean | PromiseLike<boolean>) => void) | null
   >(null);
@@ -42,8 +57,8 @@ export function ModalsProvider({ children }: { children: React.ReactNode }) {
   const contextValue = React.useMemo(
     () => ({
       getInput: setInputModal,
-      confirm: (confirmText: string) => {
-        setShowConfirm(confirmText);
+      confirm: (confirmText: string, options?: ConfirmationOptions) => {
+        setShowConfirm({ text: confirmText, options });
         return new Promise<boolean>((resolve) => {
           confirmPromiseRef.current = resolve;
         });
@@ -57,7 +72,8 @@ export function ModalsProvider({ children }: { children: React.ReactNode }) {
       <>
         {children}
         <ConfirmationModal
-          confirmText={showConfirm}
+          className={showConfirm?.options?.className}
+          confirmText={showConfirm?.text}
           onConfirm={() => {
             setShowConfirm(undefined);
             if (confirmPromiseRef.current) {

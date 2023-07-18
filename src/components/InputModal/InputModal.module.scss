@@ -7,16 +7,11 @@
   .form {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-s);
-  }
-
-  *:not(input):not(select):not(textarea):not(button) {
-    color: var(--ink-dark);
+    gap: 16px;
   }
 
   input, select {
-    height: var(--input-height-l);
-    font-size: 16px !important;
+    font-size: 16px;
   }
 
   .inputRoot {
@@ -24,15 +19,6 @@
   }
 
   .submitButton {
-    margin-top: var(--spacing-s);
-  }
-
-  label {
-    font-weight: 600 !important;
-    font-size: 14px !important;
-    & > span {
-      font-weight: 600 !important;
-      font-size: 14px !important;
-    }
+    margin-top: 16px;
   }
 }

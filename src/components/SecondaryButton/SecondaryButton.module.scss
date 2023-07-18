@@ -1,0 +1,33 @@
+.container {
+  --font-color: var(--action-color);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  color: var(--font-color);
+  font-weight: 500;
+
+  &.danger {
+    --font-color: #b90000;
+  }
+
+  &:disabled {
+    cursor: default;
+    color: gray;
+    border: 1px solid gray;
+  }
+
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.spinnerContainer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--ink-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

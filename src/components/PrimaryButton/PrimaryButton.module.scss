@@ -1,0 +1,35 @@
+.container {
+  position: relative;
+  &:disabled {
+    cursor: default;
+    opacity: 0.6;
+  }
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  &.loading {
+
+  }
+}
+
+.spinnerContainer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--ink-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.asNative {
+  &.loading {
+    color: transparent;
+  }
+  .spinnerContainer {
+    color: var(--ink-primary);
+    background-color: transparent;
+  }
+}

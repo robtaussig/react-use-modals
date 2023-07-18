@@ -5,7 +5,7 @@
 .body {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-m);
+  gap: 24px;
 }
 
 .confirmText {
@@ -14,6 +14,6 @@
 
 .buttons {
   display: flex;
-  gap: var(--spacing-s);
+  gap: 16px;
   justify-content: space-between;
 }

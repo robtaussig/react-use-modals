@@ -2,10 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
   white-space: nowrap;
-  font-weight: 600;
-  font-family: var(--fonts-normal);
   -webkit-font-smoothing: antialiased;
   outline: 0px;
   transition: all 0.2s ease 0s;
@@ -29,21 +26,21 @@
   }
 
   &.solid {
-    background-color: #228BE6;
+    background-color: var(--action-color);
     color: var(--ink-primary);
-    border-color: #228BE6;
+    border-color: var(--action-color);
   }
 
   &.native {
     svg {
-      fill: #228BE6;
+      fill: var(--action-color);
     }
   }
 
   &.outlined {
     background-color: transparent;
     color: var(--ink-primary);
-    border-color: #228BE6;
+    border-color: var(--action-color);
   }
   &.ghost {
     background-color: transparent;
@@ -51,7 +48,7 @@
     border-color: transparent;
 
     &:hover, &:focus, &:active {
-      background-color: #228be6c0;
+      background-color: var(--action-color);
       color: var(--ink-primary);
       border-color: transparent;
     }

@@ -24,11 +24,10 @@
   position: relative;
   max-height: calc(100% - 4rem);
   overflow: auto;
-  border: 1px solid rgb(9, 182, 190);
+  border: 1px solid var(--modal-content-border);
   display: flex;
   flex-direction: column;
-  font-family: 'Montserrat', sans-serif;
-  color: #ebebeb;;
+  color: #ebebeb;
   padding: 1rem 2rem;
   margin: 2rem;
   border-radius: 15px;
@@ -53,7 +52,6 @@
     margin-right: 0.5rem;
     line-height: 1.5;
     font-weight: 700;
-    font-size: 18px;
     margin-bottom: 1rem;
   }
 }
