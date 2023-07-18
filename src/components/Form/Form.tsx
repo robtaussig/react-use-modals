@@ -50,6 +50,17 @@ export type FormItem<T> = {
 
 export type FormProps<T = any> = {
   className?: string;
+  inputClassNames?: {
+    formContainer?: string;
+    primaryButton?: string;
+    secondaryButton?: string;
+    text?: string;
+    textarea?: string;
+    select?: string;
+    checkbox?: string;
+    radio?: string;
+    label?: string;
+  };
   formItems: FormItem<T>[];
   submitButtonText?: string;
   initialValues?: T;
@@ -59,6 +70,7 @@ export type FormProps<T = any> = {
 
 export function Form<T>({
   className,
+  inputClassNames = {},
   formItems,
   submitButtonText,
   initialValues,
@@ -70,7 +82,11 @@ export function Form<T>({
   return (
     <FormProvider {...formMethods}>
       <form
-        className={classNames(styles.container, className)}
+        className={classNames(
+          styles.container,
+          inputClassNames.formContainer,
+          className
+        )}
         onSubmit={formMethods.handleSubmit(onSubmit)}
       >
         {formItems.map(
@@ -91,6 +107,8 @@ export function Form<T>({
               <MyTextField
                 key={idx}
                 className={styles.inputRoot}
+                inputClassName={inputClassNames.text}
+                labelClassName={inputClassNames.label}
                 type={type === 'password' ? type : 'text'}
                 required={required}
                 disabled={disabled}
@@ -105,6 +123,8 @@ export function Form<T>({
                 {options.map((option, idx) => (
                   <MyCheckbox
                     key={`${label}-${option}-${idx}`}
+                    inputClassName={inputClassNames.checkbox}
+                    labelClassName={inputClassNames.label}
                     name={option}
                     label={option}
                     defaultChecked={initialValues?.[option]}
@@ -116,6 +136,8 @@ export function Form<T>({
               <MySelectField
                 key={idx}
                 className={styles.inputRoot}
+                inputClassName={inputClassNames.select}
+                labelClassName={inputClassNames.label}
                 required={required}
                 disabled={disabled}
                 defaultValue={placeholder ? '' : initialValues?.[String(name)]}
@@ -137,6 +159,8 @@ export function Form<T>({
               <MyTextField
                 key={idx}
                 className={styles.inputRoot}
+                inputClassName={inputClassNames.text}
+                labelClassName={inputClassNames.label}
                 required={required}
                 defaultValue={initialValues?.[String(name)]}
                 disabled={disabled}
@@ -149,6 +173,8 @@ export function Form<T>({
               <MyRadioGroup
                 key={idx}
                 className={styles.inputRoot}
+                inputClassName={inputClassNames.radio}
+                labelClassName={inputClassNames.label}
                 groupLabel={label}
                 name={String(name)}
                 options={options.map((option) => ({
@@ -165,7 +191,13 @@ export function Form<T>({
             ) : null
         )}
         {onSubmit && (
-          <PrimaryButton className={styles.submitButton} loading={loading}>
+          <PrimaryButton
+            className={classNames(
+              styles.submitButton,
+              inputClassNames.primaryButton
+            )}
+            loading={loading}
+          >
             {submitButtonText}
           </PrimaryButton>
         )}

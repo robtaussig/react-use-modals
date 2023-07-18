@@ -4,6 +4,8 @@ import styles from './MyRadioGroup.module.scss';
 
 type MyRadioGroupProps = {
   className?: string;
+  labelClassName?: string;
+  inputClassName?: string;
   groupLabel?: string;
   name: string;
   options: {
@@ -17,6 +19,8 @@ type MyRadioGroupProps = {
 
 export const MyRadioGroup: React.FC<MyRadioGroupProps> = ({
   className,
+  labelClassName,
+  inputClassName,
   name,
   groupLabel,
   options,
@@ -29,6 +33,7 @@ export const MyRadioGroup: React.FC<MyRadioGroupProps> = ({
         {options.map(({ label, initialSelect, disabled, value }) => (
           <div key={value} className={styles.radio}>
             <input
+              className={inputClassName}
               type={'radio'}
               name={name}
               disabled={disabled}
@@ -38,7 +43,7 @@ export const MyRadioGroup: React.FC<MyRadioGroupProps> = ({
               onChange={() => onChange(value)}
             />
             <label htmlFor={value}>
-              <span>{label}</span>
+              <span className={labelClassName}>{label}</span>
             </label>
           </div>
         ))}

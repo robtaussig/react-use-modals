@@ -42,9 +42,24 @@ const DEFAULT_MY_INPUT_MODAL_PROPS: Omit<InputModalProps, 'open' | 'setOpen'> =
 
 export type ModalsProviderProps = {
   children: React.ReactNode;
+  classNames?: {
+    formContainer?: string;
+    modalContainer?: string;
+    primaryButton?: string;
+    secondaryButton?: string;
+    text?: string;
+    textarea?: string;
+    select?: string;
+    checkbox?: string;
+    radio?: string;
+    label?: string;
+  };
 };
 
-export function ModalsProvider({ children }: ModalsProviderProps) {
+export function ModalsProvider({
+  children,
+  classNames: customClassNames,
+}: ModalsProviderProps) {
   const [myInputModal, setInputModal] = React.useState<InputProps>();
   const [showConfirm, setShowConfirm] = React.useState<{
     text: string;
@@ -73,6 +88,7 @@ export function ModalsProvider({ children }: ModalsProviderProps) {
         {children}
         <ConfirmationModal
           className={showConfirm?.options?.className}
+          inputClassNames={customClassNames}
           confirmText={showConfirm?.text}
           onConfirm={() => {
             setShowConfirm(undefined);
@@ -91,6 +107,7 @@ export function ModalsProvider({ children }: ModalsProviderProps) {
         />
         <InputModal
           {...(myInputModal ?? DEFAULT_MY_INPUT_MODAL_PROPS)}
+          inputClassNames={customClassNames}
           open={Boolean(myInputModal)}
           setOpen={() => setInputModal(undefined)}
         />

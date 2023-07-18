@@ -8,6 +8,17 @@ import styles from './ConfirmationModal.module.scss';
 
 type ConfirmationModalProps = {
   className?: string;
+  inputClassNames?: {
+    modalContainer?: string;
+    primaryButton?: string;
+    secondaryButton?: string;
+    text?: string;
+    textarea?: string;
+    select?: string;
+    checkbox?: string;
+    radio?: string;
+    label?: string;
+  };
   confirmText?: string;
   onReject: () => void;
   onConfirm: () => void;
@@ -15,6 +26,7 @@ type ConfirmationModalProps = {
 
 export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   className,
+  inputClassNames,
   confirmText,
   onReject,
   onConfirm,
@@ -30,7 +42,11 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   return (
     Boolean(confirmText) && (
       <Modal
-        className={cn(styles.container, className)}
+        className={cn(
+          styles.container,
+          inputClassNames.modalContainer,
+          className
+        )}
         header={'Confirmation Required'}
         onRequestClose={handleClose}
       >
@@ -38,10 +54,19 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
           <div className={styles.body}>
             <span className={styles.confirmText}>{confirmText}</span>
             <div className={styles.buttons}>
-              <SecondaryButton onClick={() => close(false)} variant={'ghost'}>
+              <SecondaryButton
+                className={inputClassNames.secondaryButton}
+                onClick={() => close(false)}
+                variant={'ghost'}
+              >
                 Cancel
               </SecondaryButton>
-              <PrimaryButton onClick={() => close(true)}>Confirm</PrimaryButton>
+              <PrimaryButton
+                className={inputClassNames.primaryButton}
+                onClick={() => close(true)}
+              >
+                Confirm
+              </PrimaryButton>
             </div>
           </div>
         )}

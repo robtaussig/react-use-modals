@@ -6,6 +6,18 @@ import { Form, FormItem } from '../Form';
 
 export type InputModalProps<T = any> = {
   className?: string;
+  inputClassNames?: {
+    formContainer?: string;
+    modalContainer?: string;
+    primaryButton?: string;
+    secondaryButton?: string;
+    text?: string;
+    textarea?: string;
+    select?: string;
+    checkbox?: string;
+    radio?: string;
+    label?: string;
+  };
   header?: string;
   subHeader?: string;
   formItems: FormItem<T>[];
@@ -17,11 +29,11 @@ export type InputModalProps<T = any> = {
   open: boolean;
   closeButton?: boolean;
   setOpen: (open: boolean) => void;
-  lightMode?: boolean;
 };
 
 export function InputModal<T>({
   className,
+  inputClassNames,
   header,
   subHeader,
   formItems,
@@ -32,7 +44,6 @@ export function InputModal<T>({
   open,
   setOpen,
   initialValues,
-  lightMode,
   closeButton,
 }: InputModalProps<T>) {
   const [loading, setLoading] = React.useState(false);
@@ -71,9 +82,7 @@ export function InputModal<T>({
       <Modal
         className={cn(
           styles.newContainer,
-          {
-            [styles.newLightMode]: lightMode,
-          },
+          inputClassNames.modalContainer,
           className
         )}
         header={header}
@@ -85,6 +94,7 @@ export function InputModal<T>({
           <>
             {subHeader && <p className={styles.subHeader}>{subHeader}</p>}
             <Form
+              inputClassNames={inputClassNames}
               formItems={formItems}
               submitButtonText={submitButtonText}
               initialValues={initialValues}

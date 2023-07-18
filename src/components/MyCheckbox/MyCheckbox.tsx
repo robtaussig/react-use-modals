@@ -7,6 +7,9 @@ import styles from './MyCheckbox.module.scss';
 type MyCheckboxProps = {
   label?: string;
   className?: string;
+  labelClassName?: string;
+  inputClassName?: string;
+
   name: string;
 } & React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,
@@ -14,7 +17,10 @@ type MyCheckboxProps = {
 >;
 
 export const MyCheckbox = React.forwardRef<HTMLInputElement, MyCheckboxProps>(
-  ({ className, name, label, ...inputProps }, forwardedRef) => {
+  (
+    { className, name, label, labelClassName, inputClassName, ...inputProps },
+    forwardedRef
+  ) => {
     const { register } = useFormContext();
     const { ref, ...registered } = register(name);
 
@@ -23,12 +29,14 @@ export const MyCheckbox = React.forwardRef<HTMLInputElement, MyCheckboxProps>(
         htmlFor={name}
         className={cn(
           styles.container,
+          labelClassName,
           { [styles.disabled]: Boolean(inputProps.disabled) },
           className
         )}
       >
         <input
           type={'checkbox'}
+          className={inputClassName}
           id={name}
           ref={(node) => {
             if (typeof forwardedRef === 'function') {

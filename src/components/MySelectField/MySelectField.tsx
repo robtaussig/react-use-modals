@@ -7,6 +7,8 @@ import styles from './MySelectField.module.scss';
 
 type MySelectFieldProps = {
   className?: string;
+  labelClassName?: string;
+  inputClassName?: string;
   name: string;
   label?: string;
   children: React.ReactNode;
@@ -17,6 +19,8 @@ type MySelectFieldProps = {
 
 export const MySelectField = ({
   className,
+  labelClassName,
+  inputClassName,
   name,
   label,
   children,
@@ -25,8 +29,13 @@ export const MySelectField = ({
   const { register } = useFormContext();
   return (
     <label className={classNames(styles.container, className)} htmlFor={name}>
-      {label && <span>{label}</span>}
-      <select id={name} {...register(name)} {...inputProps}>
+      {label && <span className={labelClassName}>{label}</span>}
+      <select
+        className={inputClassName}
+        id={name}
+        {...register(name)}
+        {...inputProps}
+      >
         {children}
       </select>
     </label>

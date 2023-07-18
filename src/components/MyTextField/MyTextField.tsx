@@ -6,6 +6,8 @@ import styles from './MyTextField.module.scss';
 
 export type MyTextFieldProps = {
   label?: string;
+  labelClassName?: string;
+  inputClassName?: string;
   className?: string;
   name: string;
 } & React.DetailedHTMLProps<
@@ -14,14 +16,18 @@ export type MyTextFieldProps = {
 >;
 
 export const MyTextField = React.forwardRef<HTMLInputElement, MyTextFieldProps>(
-  ({ className, name, label, ...inputProps }, forwardedRef) => {
+  (
+    { className, labelClassName, inputClassName, name, label, ...inputProps },
+    forwardedRef
+  ) => {
     const { register } = useFormContext();
     const { ref, ...registered } = register(name);
     return (
       <label htmlFor={name} className={classNames(styles.container, className)}>
-        {label && <span>{label}</span>}
+        {label && <span className={labelClassName}>{label}</span>}
         <input
           type={'text'}
+          className={inputClassName}
           id={name}
           ref={(node) => {
             if (typeof forwardedRef === 'function') {
@@ -44,6 +50,8 @@ export const MyTextField = React.forwardRef<HTMLInputElement, MyTextFieldProps>(
 export type MyTextAreaProps = {
   label?: string;
   className?: string;
+  labelClassName?: string;
+  inputClassName?: string;
   name: string;
 } & React.DetailedHTMLProps<
   React.TextareaHTMLAttributes<HTMLTextAreaElement>,
@@ -52,6 +60,8 @@ export type MyTextAreaProps = {
 
 export const MyTextArea = ({
   className,
+  labelClassName,
+  inputClassName,
   name,
   label,
   ...inputProps
@@ -60,8 +70,13 @@ export const MyTextArea = ({
   const registered = register(name);
   return (
     <label htmlFor={name} className={classNames(styles.container, className)}>
-      {label && <span className={styles.label}>{label}</span>}
-      <textarea id={name} {...registered} {...inputProps} />
+      {label && <span className={labelClassName}>{label}</span>}
+      <textarea
+        className={inputClassName}
+        id={name}
+        {...registered}
+        {...inputProps}
+      />
     </label>
   );
 };
