@@ -26,40 +26,40 @@ const getBlock = (container: HTMLDivElement): 'start' | 'middle' | 'end' => {
   return 'middle';
 };
 
-export const ContextMenu = ({
-  className,
-  menuClassName,
-  isShowingNavItems,
-  disabled,
-  onRequestCloseNavItems,
-  items,
-  onShowNavItems,
-  title,
-}: ContextMenuProps) => {
-  const rootRef = React.useRef<HTMLDivElement>(null);
+export const ContextMenu = React.memo(
+  ({
+    className,
+    menuClassName,
+    isShowingNavItems,
+    disabled,
+    onRequestCloseNavItems,
+    items,
+    onShowNavItems,
+    title,
+  }: ContextMenuProps) => {
+    const rootRef = React.useRef<HTMLDivElement>(null);
 
-  return (
-    <div ref={rootRef} className={cn(styles.container, className)}>
-      <button
-        className={cn(styles.showNavItemsButton, {
-          [styles.showNavItems]: isShowingNavItems,
-        })}
-        onClick={onShowNavItems}
-        disabled={disabled}
-      >
-        <HiDotsVertical size={'24px'} />
-      </button>
-      {isShowingNavItems && (
-        <FullScreenMenu
-          className={menuClassName}
-          title={title}
-          items={items}
-          block={getBlock(rootRef.current)}
-          onRequestClose={onRequestCloseNavItems}
-        />
-      )}
-    </div>
-  );
-};
-
-export default React.memo(ContextMenu);
+    return (
+      <div ref={rootRef} className={cn(styles.container, className)}>
+        <button
+          className={cn(styles.showNavItemsButton, {
+            [styles.showNavItems]: isShowingNavItems,
+          })}
+          onClick={onShowNavItems}
+          disabled={disabled}
+        >
+          <HiDotsVertical size={'24px'} />
+        </button>
+        {isShowingNavItems && (
+          <FullScreenMenu
+            className={menuClassName}
+            title={title}
+            items={items}
+            block={getBlock(rootRef.current)}
+            onRequestClose={onRequestCloseNavItems}
+          />
+        )}
+      </div>
+    );
+  }
+);
