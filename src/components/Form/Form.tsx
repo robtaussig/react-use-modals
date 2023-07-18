@@ -4,7 +4,7 @@ import React from 'react';
 import MyCheckbox from '../MyCheckbox/MyCheckbox';
 import MyRadioGroup from '../MyRadioGroup';
 import MySelectField from '../MySelectField';
-import MyTextField from '../MyTextField';
+import { MyTextField } from '../MyTextField';
 
 import { useForm, FormProvider } from 'react-hook-form';
 import PrimaryButton from '../PrimaryButton/PrimaryButton';
