@@ -1,5 +1,5 @@
 export { ModalsProvider, useModals } from './Modals.context';
-export { ContextMenu } from './components/ContextMenu';
+export { ContextMenu, ContextMenuProps } from './components/ContextMenu';
 export { Form } from './components/Form';
 export { default as FullScreenMenu } from './components/FullScreenMenu';
 export { default as PrimaryButton } from './components/PrimaryButton';
