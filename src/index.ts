@@ -1,2 +1,2 @@
-export { ModalsProvider, useModals } from '~/Modals.context';
-export { ContextMenu } from '~/components/ContextMenu';
+export { ModalsProvider, useModals } from './Modals.context';
+export { ContextMenu } from './components/ContextMenu';
