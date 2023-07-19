@@ -18,7 +18,7 @@ export type FormItem<T> = {
   required?: boolean;
   disabled?: boolean;
   placeholder?: string;
-  content?: React.ReactNode;
+  content?: (close: () => void) => React.ReactNode;
 } & (
   | {
       name?: keyof T;
