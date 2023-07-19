@@ -6,7 +6,7 @@ import useCloseOnOutsideClick from '~/hooks/useCloseOnOutsideClick';
 import { FaTimes } from 'react-icons/fa';
 import styles from './Modal.module.scss';
 
-type ModalProps<T = any> = {
+export type ModalProps<T = any> = {
   className?: string;
   header?: string | React.ReactNode;
   footer?: string | React.ReactNode;

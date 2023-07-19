@@ -1,6 +1,9 @@
 import React from 'react';
 import { InputModal, InputModalProps } from './components/InputModal';
 import ConfirmationModal from './components/ConfirmationModal';
+import Modal from './components/Modal';
+import type { ModalProps } from './components/Modal';
+import classNames from 'classnames';
 
 type ConfirmationOptions = {
   className?: string;
@@ -8,6 +11,7 @@ type ConfirmationOptions = {
 
 type Context = {
   getInput: <T>(inputProps: InputProps<T>) => void;
+  showModal: (modalProps: Omit<ModalProps, 'onRequestClose'>) => void;
   confirm: (
     confirmText: string,
     options?: ConfirmationOptions
@@ -17,6 +21,7 @@ type Context = {
 const DEFAULT_CONTEXT = {
   getInput: () => null,
   confirm: async () => false,
+  showModal: () => null,
 };
 
 const ModalsContext = React.createContext<Context>(DEFAULT_CONTEXT);
@@ -62,6 +67,7 @@ export function ModalsProvider({
   classNames: customClassNames,
 }: ModalsProviderProps) {
   const [myInputModal, setInputModal] = React.useState<InputProps>();
+  const [modalContent, setModalContent] = React.useState<Omit<ModalProps, 'onRequestClose'>>();
   const [showConfirm, setShowConfirm] = React.useState<{
     text: string;
     options?: ConfirmationOptions;
@@ -73,6 +79,7 @@ export function ModalsProvider({
   const contextValue = React.useMemo(
     () => ({
       getInput: setInputModal,
+      showModal: setModalContent,
       confirm: (confirmText: string, options?: ConfirmationOptions) => {
         setShowConfirm({ text: confirmText, options });
         return new Promise<boolean>((resolve) => {
@@ -112,6 +119,11 @@ export function ModalsProvider({
           open={Boolean(myInputModal)}
           setOpen={() => setInputModal(undefined)}
         />
+        {Boolean(modalContent) && <Modal
+          {...modalContent}
+          className={classNames(customClassNames.modalContainer, modalContent.className)}
+          onRequestClose={() => setModalContent(undefined)}
+        />}
         <div id='full-screen-menu-root' />
       </>
     </ModalsContext.Provider>
