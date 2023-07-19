@@ -26,8 +26,11 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: var(--ink-primary);
   display: flex;
   justify-content: center;
   align-items: center;
+
+  svg {
+    color: currentColor;
+  }
 }
