@@ -90,12 +90,11 @@ const PrimaryButton = ({
       variant={variant}
       disabled={disabled}
     >
-      {children}
-      {throttledLoading && (
+      {throttledLoading ? (
         <div className={styles.spinnerContainer}>
           <Spinner />
         </div>
-      )}
+      ) : children}
     </Button>
   );
 };
