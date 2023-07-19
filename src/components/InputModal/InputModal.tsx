@@ -99,7 +99,8 @@ export function InputModal<T>({
               formItems={formItems}
               submitButtonText={submitButtonText}
               initialValues={initialValues}
-              onSubmit={(input) => handleSubmit(input, close)}
+              onSubmit={onSubmit ? (input) => handleSubmit(input, close) : undefined}
+              onRequestClose={close}
               loading={loading}
             />
           </>

@@ -67,6 +67,7 @@ export type FormProps<T = any> = {
   initialValues?: T;
   onSubmit: (input: T) => void;
   loading?: boolean;
+  onRequestClose?: () => void;
 };
 
 export function Form<T>({
@@ -76,6 +77,7 @@ export function Form<T>({
   submitButtonText,
   initialValues,
   onSubmit,
+  onRequestClose,
   loading,
 }: FormProps<T>) {
   const formMethods = useForm<T>();
@@ -187,7 +189,7 @@ export function Form<T>({
               />
             ) : type === 'custom' ? (
               <div key={idx} className={styles.inputRoot}>
-                {content(close)}
+                {content(onRequestClose)}
               </div>
             ) : null
         )}
