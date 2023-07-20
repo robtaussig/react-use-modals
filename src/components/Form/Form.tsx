@@ -70,6 +70,15 @@ export type FormProps<T = any> = {
   onRequestClose?: () => void;
 };
 
+function trimOnSubmit<T extends any>(onSubmit: (input: T) => void) {
+  return (input: T) => {
+    const trimmedInput = Object.fromEntries(
+      Object.entries(input).map(([key, value]) => [key, String(value).trim()])
+    ) as T;
+    return onSubmit(trimmedInput);
+  }
+}
+
 export function Form<T>({
   className,
   inputClassNames = {},
@@ -90,7 +99,7 @@ export function Form<T>({
           inputClassNames.formContainer,
           className
         )}
-        onSubmit={formMethods.handleSubmit(onSubmit)}
+        onSubmit={formMethods.handleSubmit(trimOnSubmit(onSubmit))}
       >
         {formItems.map(
           (
