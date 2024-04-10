@@ -2,9 +2,9 @@ import React from 'react';
 
 import cn from 'classnames';
 
-import { ContextMenuItem } from 'src/use-react-modals/src/components/ContextMenu/ContextMenu.types';
-import Modal from 'src/use-react-modals/src/components/Modal';
-import { useModals } from 'src/use-react-modals/src/Modals.context';
+import { ContextMenuItem } from '../../components/ContextMenu/ContextMenu.types';
+import Modal from '../../components/Modal';
+import { useModals } from '../../Modals.context';
 
 import Spinner from '../Spinner';
 

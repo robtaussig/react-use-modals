@@ -6,9 +6,10 @@ import {
 } from '@mantine/core';
 import classNames from 'classnames';
 
-import { useFormContext } from '@redwoodjs/forms';
+import { useFormContext } from 'react-hook-form';
 
 import styles from './MyTextField.module.scss';
+import { forwardRef } from 'react';
 
 export type MyTextFieldProps = {
   label?: string;
@@ -17,7 +18,7 @@ export type MyTextFieldProps = {
   lightMode?: boolean;
 } & TextInputProps;
 
-export const MyTextField = React.forwardRef<HTMLInputElement, MyTextFieldProps>(
+export const MyTextField = forwardRef<HTMLInputElement, MyTextFieldProps>(
   ({ className, name, label, lightMode, ...inputProps }, forwardedRef) => {
     const { register } = useFormContext();
     const { ref, ...registered } = register(name);

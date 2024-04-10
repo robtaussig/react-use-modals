@@ -4,7 +4,7 @@ import React from 'react';
 import { ContextMenuItem } from './ContextMenu.types';
 
 import styles from './ContextMenu.module.scss';
-import FullScreenMenu from 'src/use-react-modals/src/components/FullScreenMenu';
+import FullScreenMenu from '../../components/FullScreenMenu';
 
 export type ContextMenuProps = {
   className?: string;

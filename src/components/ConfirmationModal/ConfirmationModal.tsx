@@ -2,9 +2,9 @@ import React from 'react';
 
 import cn from 'classnames';
 
-import Modal from 'src/use-react-modals/src/components/Modal';
-import PrimaryButton from 'src/use-react-modals/src/components/PrimaryButton/PrimaryButton';
-import SecondaryButton from 'src/use-react-modals/src/components/SecondaryButton/SecondaryButton';
+import Modal from '../../components/Modal';
+import PrimaryButton from '../../components/PrimaryButton/PrimaryButton';
+import SecondaryButton from '../../components/SecondaryButton/SecondaryButton';
 
 import styles from './ConfirmationModal.module.scss';
 

@@ -2,9 +2,9 @@ import React from 'react';
 
 import classNames from 'classnames';
 
-import { withVibrate } from 'src/use-react-modals/src/components/Button/Button.util';
-import Spinner from 'src/use-react-modals/src/components/Spinner';
-import { useThrottledValue } from 'src/use-react-modals/src/hooks/useThrottledValue';
+import { withVibrate } from '../../components/Button/Button.util';
+import Spinner from '../../components/Spinner';
+import { useThrottledValue } from '../../hooks/useThrottledValue';
 
 import { Button, ButtonProps } from '../Button/Button';
 

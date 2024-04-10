@@ -1,7 +1,7 @@
 import { Select, SelectProps } from '@mantine/core';
 import classNames from 'classnames';
 
-import { Controller, useFormContext } from '@redwoodjs/forms';
+import { Controller, useFormContext } from 'react-hook-form';
 
 import styles from './MySelectField.module.scss';
 

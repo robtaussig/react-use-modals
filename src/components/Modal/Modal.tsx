@@ -4,8 +4,8 @@ import cn from 'classnames';
 import ReactDOM from 'react-dom';
 import { FaTimes } from 'react-icons/fa';
 
-import useBlockBodyScroll from 'src/use-react-modals/src/hooks/useBlockBodyScroll';
-import useCloseOnOutsideClick from 'src/use-react-modals/src/hooks/useCloseOnOutsideClick';
+import useBlockBodyScroll from '../../hooks/useBlockBodyScroll';
+import useCloseOnOutsideClick from '../../hooks/useCloseOnOutsideClick';
 
 import styles from './Modal.module.scss';
 
