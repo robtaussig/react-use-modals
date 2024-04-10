@@ -27,7 +27,7 @@ type ConfirmationModalProps = {
   onConfirm: () => void;
 };
 
-export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
+export const ConfirmationModal: ConfirmationModalProps = ({
   className,
   inputClassNames = {},
   confirmText,

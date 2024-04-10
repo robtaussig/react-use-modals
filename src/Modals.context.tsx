@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { MantineProvider } from '@mantine/core';
 import classNames from 'classnames';
 
 import ConfirmationModal from './components/ConfirmationModal';
@@ -48,7 +49,7 @@ const DEFAULT_MY_INPUT_MODAL_PROPS: Omit<InputModalProps, 'open' | 'setOpen'> =
   };
 
 export type ModalsProviderProps = {
-  children: React.ReactNode;
+  children: React.ReactElement;
   classNames?: {
     formContainer?: string;
     modalContainer?: string;
@@ -94,8 +95,8 @@ export function ModalsProvider({
   );
 
   return (
-    <ModalsContext.Provider value={contextValue}>
-      <>
+    <MantineProvider>
+      <ModalsContext.Provider value={contextValue}>
         {children}
         <ConfirmationModal
           className={showConfirm?.options?.className}
@@ -133,8 +134,8 @@ export function ModalsProvider({
           />
         )}
         <div id="full-screen-menu-root" />
-      </>
-    </ModalsContext.Provider>
+      </ModalsContext.Provider>
+    </MantineProvider>
   );
 }
 
