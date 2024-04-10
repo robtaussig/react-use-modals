@@ -1,45 +1,52 @@
+import { Select, SelectProps } from '@mantine/core';
 import classNames from 'classnames';
 
-import { useFormContext } from 'react-hook-form';
-import React from 'react';
+import { Controller, useFormContext } from '@redwoodjs/forms';
 
 import styles from './MySelectField.module.scss';
 
-type MySelectFieldProps = {
+export interface MySelectFieldProps extends SelectProps {
   className?: string;
-  labelClassName?: string;
-  inputClassName?: string;
   name: string;
+  value?: string;
+  options: { value: string; label: string }[];
+  onChange?: (value: string) => void;
   label?: string;
-  children: React.ReactNode;
-} & React.DetailedHTMLProps<
-  React.SelectHTMLAttributes<HTMLSelectElement>,
-  HTMLSelectElement
->;
+}
 
 export const MySelectField = ({
   className,
-  labelClassName,
-  inputClassName,
   name,
   label,
-  children,
+  value,
+  options,
+  onChange,
   ...inputProps
 }: MySelectFieldProps) => {
-  const { register } = useFormContext();
+  const { control } = useFormContext();
   return (
-    <label className={classNames(styles.container, className)} htmlFor={name}>
-      {label && <span className={labelClassName}>{label}</span>}
-      <select
-        className={inputClassName}
-        id={name}
-        {...register(name)}
-        {...inputProps}
-      >
-        {children}
-      </select>
-    </label>
+    <Controller
+      control={control}
+      name={name}
+      defaultValue={value}
+      render={({ field: { value, onChange: formOnChange } }) => (
+        <Select
+          className={classNames(styles.container, className)}
+          name={name}
+          label={label}
+          size={'xs'}
+          {...inputProps}
+          value={value}
+          comboboxProps={{ zIndex: 99999999 }}
+          data={options}
+          onChange={(value) => {
+            onChange?.(value);
+            formOnChange(value);
+          }}
+        />
+      )}
+    />
   );
 };
 
-export default React.memo(MySelectField);
+export default MySelectField;

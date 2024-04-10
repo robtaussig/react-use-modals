@@ -1,48 +1,50 @@
+import {
+  TextInput,
+  Textarea,
+  TextInputProps,
+  TextareaProps,
+} from '@mantine/core';
 import classNames from 'classnames';
-import React from 'react';
-import { useFormContext } from 'react-hook-form';
+
+import { useFormContext } from '@redwoodjs/forms';
 
 import styles from './MyTextField.module.scss';
 
 export type MyTextFieldProps = {
   label?: string;
-  labelClassName?: string;
-  inputClassName?: string;
   className?: string;
   name: string;
-} & React.DetailedHTMLProps<
-  React.InputHTMLAttributes<HTMLInputElement>,
-  HTMLInputElement
->;
+  lightMode?: boolean;
+} & TextInputProps;
 
 export const MyTextField = React.forwardRef<HTMLInputElement, MyTextFieldProps>(
-  (
-    { className, labelClassName, inputClassName, name, label, ...inputProps },
-    forwardedRef
-  ) => {
+  ({ className, name, label, lightMode, ...inputProps }, forwardedRef) => {
     const { register } = useFormContext();
     const { ref, ...registered } = register(name);
-    return (
-      <label htmlFor={name} className={classNames(styles.container, className)}>
-        {label && <span className={labelClassName}>{label}</span>}
-        <input
-          type={'text'}
-          className={inputClassName}
-          id={name}
-          ref={(node) => {
-            if (typeof forwardedRef === 'function') {
-              forwardedRef(node);
-            } else if (forwardedRef?.current) {
-              forwardedRef.current = node;
-            }
 
-            if (typeof ref === 'function') ref(node);
-          }}
-          {...registered}
-          {...inputProps}
-          inputMode={inputProps.type === 'number' ? 'numeric' : 'text'}
-        />
-      </label>
+    return (
+      <TextInput
+        className={classNames(
+          styles.container,
+          {
+            [styles.lightMode]: lightMode,
+          },
+          className
+        )}
+        ref={(node) => {
+          if (typeof forwardedRef === 'function') {
+            forwardedRef(node);
+          } else if (forwardedRef?.current) {
+            forwardedRef.current = node;
+          }
+
+          if (typeof ref === 'function') ref(node);
+        }}
+        size="xs"
+        label={label}
+        {...registered}
+        {...inputProps}
+      />
     );
   }
 );
@@ -50,33 +52,34 @@ export const MyTextField = React.forwardRef<HTMLInputElement, MyTextFieldProps>(
 export type MyTextAreaProps = {
   label?: string;
   className?: string;
-  labelClassName?: string;
-  inputClassName?: string;
   name: string;
-} & React.DetailedHTMLProps<
-  React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-  HTMLTextAreaElement
->;
+  lightMode?: boolean;
+} & TextareaProps;
 
 export const MyTextArea = ({
   className,
-  labelClassName,
-  inputClassName,
   name,
   label,
+  lightMode,
   ...inputProps
 }: MyTextAreaProps) => {
   const { register } = useFormContext();
   const registered = register(name);
+
   return (
-    <label htmlFor={name} className={classNames(styles.container, className)}>
-      {label && <span className={labelClassName}>{label}</span>}
-      <textarea
-        className={inputClassName}
-        id={name}
-        {...registered}
-        {...inputProps}
-      />
-    </label>
+    <Textarea
+      className={classNames(
+        styles.container,
+        {
+          [styles.lightMode]: lightMode,
+        },
+        className
+      )}
+      label={label}
+      {...registered}
+      {...inputProps}
+    />
   );
 };
+
+export default MyTextField;

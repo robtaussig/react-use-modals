@@ -1,14 +1,15 @@
-import styles from './Form.module.scss';
 import React from 'react';
+
+import classNames from 'classnames';
+import { useForm, FormProvider } from 'react-hook-form';
 
 import MyCheckbox from '../MyCheckbox/MyCheckbox';
 import MyRadioGroup from '../MyRadioGroup';
 import MySelectField from '../MySelectField';
 import { MyTextField } from '../MyTextField';
-
-import { useForm, FormProvider } from 'react-hook-form';
 import PrimaryButton from '../PrimaryButton/PrimaryButton';
-import classNames from 'classnames';
+
+import styles from './Form.module.scss';
 
 export type FormItem<T> = {
   name?: keyof T;
@@ -76,7 +77,7 @@ function trimOnSubmit<T extends any>(onSubmit: (input: T) => void) {
       Object.entries(input).map(([key, value]) => [key, String(value).trim()])
     ) as T;
     return onSubmit(trimmedInput);
-  }
+  };
 }
 
 export function Form<T>({
@@ -119,8 +120,10 @@ export function Form<T>({
               <MyTextField
                 key={idx}
                 className={styles.inputRoot}
-                inputClassName={inputClassNames.text}
-                labelClassName={inputClassNames.label}
+                classNames={{
+                  input: inputClassNames.text,
+                  label: inputClassNames.label,
+                }}
                 type={type === 'password' ? type : 'text'}
                 required={required}
                 disabled={disabled}
@@ -148,31 +151,29 @@ export function Form<T>({
               <MySelectField
                 key={idx}
                 className={styles.inputRoot}
-                inputClassName={inputClassNames.select}
-                labelClassName={inputClassNames.label}
+                classNames={{
+                  input: inputClassNames.select,
+                  label: inputClassNames.label,
+                }}
                 required={required}
                 disabled={disabled}
-                defaultValue={placeholder ? '' : initialValues?.[String(name)]}
+                placeholder={placeholder}
+                defaultValue={initialValues?.[String(name)]}
                 label={label}
                 name={String(name)}
-              >
-                {placeholder && (
-                  <option hidden disabled value={''}>
-                    {placeholder}
-                  </option>
-                )}
-                {options.map((option) => (
-                  <option key={option} value={option} label={option}>
-                    {option}
-                  </option>
-                ))}
-              </MySelectField>
+                options={options.map((option) => ({
+                  label: option,
+                  value: option,
+                }))}
+              />
             ) : type === 'number' ? (
               <MyTextField
                 key={idx}
                 className={styles.inputRoot}
-                inputClassName={inputClassNames.text}
-                labelClassName={inputClassNames.label}
+                classNames={{
+                  input: inputClassNames.text,
+                  label: inputClassNames.label,
+                }}
                 required={required}
                 defaultValue={initialValues?.[String(name)]}
                 disabled={disabled}

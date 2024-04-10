@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 
 import classNames from 'classnames';
 
-import { useModals } from '~/Modals.context';
-import { useThrottledValue } from '~/hooks/useThrottledValue';
-import { withVibrate } from '~/components/Button/Button.util';
+import { withVibrate } from 'src/use-react-modals/src/components/Button/Button.util';
+import { useThrottledValue } from 'src/use-react-modals/src/hooks/useThrottledValue';
+import { useModals } from 'src/use-react-modals/src/Modals.context';
 
 import { Button, ButtonProps } from '../Button/Button';
 import Spinner from '../Spinner';
@@ -83,7 +83,9 @@ export const SecondaryButton = ({
         <div className={styles.spinnerContainer}>
           <Spinner />
         </div>
-      ) : children}
+      ) : (
+        children
+      )}
     </Button>
   );
 };

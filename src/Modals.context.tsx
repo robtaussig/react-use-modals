@@ -1,9 +1,11 @@
 import React from 'react';
-import { InputModal, InputModalProps } from './components/InputModal';
+
+import classNames from 'classnames';
+
 import ConfirmationModal from './components/ConfirmationModal';
+import { InputModal, InputModalProps } from './components/InputModal';
 import Modal from './components/Modal';
 import type { ModalProps } from './components/Modal';
-import classNames from 'classnames';
 
 type ConfirmationOptions = {
   className?: string;
@@ -67,7 +69,8 @@ export function ModalsProvider({
   classNames: customClassNames,
 }: ModalsProviderProps) {
   const [myInputModal, setInputModal] = React.useState<InputProps>();
-  const [modalContent, setModalContent] = React.useState<Omit<ModalProps, 'onRequestClose'>>();
+  const [modalContent, setModalContent] =
+    React.useState<Omit<ModalProps, 'onRequestClose'>>();
   const [showConfirm, setShowConfirm] = React.useState<{
     text: string;
     options?: ConfirmationOptions;
@@ -119,12 +122,17 @@ export function ModalsProvider({
           open={Boolean(myInputModal)}
           setOpen={() => setInputModal(undefined)}
         />
-        {Boolean(modalContent) && <Modal
-          {...modalContent}
-          className={classNames(customClassNames.modalContainer, modalContent.className)}
-          onRequestClose={() => setModalContent(undefined)}
-        />}
-        <div id='full-screen-menu-root' />
+        {Boolean(modalContent) && (
+          <Modal
+            {...modalContent}
+            className={classNames(
+              customClassNames.modalContainer,
+              modalContent.className
+            )}
+            onRequestClose={() => setModalContent(undefined)}
+          />
+        )}
+        <div id="full-screen-menu-root" />
       </>
     </ModalsContext.Provider>
   );

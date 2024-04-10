@@ -1,5 +1,6 @@
-import throttle from 'lodash/throttle';
 import React from 'react';
+
+import throttle from 'lodash/throttle';
 
 export function useThrottledValue<T>(value: T, duration = 500): T {
   const [throttledValue, setThrottledValue] = React.useState(value);

@@ -1,10 +1,12 @@
-import classNames from 'classnames';
 import React from 'react';
-import { useThrottledValue } from '~/hooks/useThrottledValue';
-import { withVibrate } from '~/components/Button/Button.util';
+
+import classNames from 'classnames';
+
+import { withVibrate } from 'src/use-react-modals/src/components/Button/Button.util';
+import Spinner from 'src/use-react-modals/src/components/Spinner';
+import { useThrottledValue } from 'src/use-react-modals/src/hooks/useThrottledValue';
 
 import { Button, ButtonProps } from '../Button/Button';
-import Spinner from '~/components/Spinner';
 
 import styles from './PrimaryButton.module.scss';
 
@@ -94,7 +96,9 @@ const PrimaryButton = ({
         <div className={styles.spinnerContainer}>
           <Spinner />
         </div>
-      ) : children}
+      ) : (
+        children
+      )}
     </Button>
   );
 };

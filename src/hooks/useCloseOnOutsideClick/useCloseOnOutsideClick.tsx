@@ -1,4 +1,4 @@
-import React, { MutableRefObject } from "react";
+import React, { MutableRefObject } from 'react';
 
 const useCloseOnOutsideClick = (
   outsideRef: MutableRefObject<HTMLElement>,
@@ -19,20 +19,20 @@ const useCloseOnOutsideClick = (
 
       const keydownHandler: EventListener = (e) => {
         if (unmounted) return;
-        if ((e as KeyboardEvent).key === "Escape") {
+        if ((e as KeyboardEvent).key === 'Escape') {
           onRequestCloseRef.current();
         }
       };
 
       const timeout = setTimeout(() => {
-        document.body.addEventListener("click", clickHandler);
-        window.addEventListener("keydown", keydownHandler);
+        document.body.addEventListener('click', clickHandler);
+        window.addEventListener('keydown', keydownHandler);
       }, 100);
 
       return () => {
         unmounted = true;
-        document.body.removeEventListener("click", clickHandler);
-        window.removeEventListener("keydown", keydownHandler);
+        document.body.removeEventListener('click', clickHandler);
+        window.removeEventListener('keydown', keydownHandler);
         clearTimeout(timeout);
       };
     }
